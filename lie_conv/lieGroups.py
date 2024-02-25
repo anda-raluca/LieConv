@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from lie_conv.utils import export, Named
+from utils import export, Named
 
 @export
 def norm(x,dim):

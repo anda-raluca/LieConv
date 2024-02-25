@@ -5,8 +5,8 @@ import logging
 import os
 
 from torch.utils.data import DataLoader
-from .dataset import ProcessedDataset
-from .prepare import prepare_dataset
+from dataset import ProcessedDataset
+from prepare import prepare_dataset
 
 
 def initialize_datasets(splits, datadir, dataset, subset=None,
