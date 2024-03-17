@@ -8,12 +8,12 @@ import warnings
 import h5py
 import os
 from torch.utils.data import Dataset
-from utils import Named, export, Expression, FixedNumpySeed, RandomZrotation, GaussianNoise
+from lie_conv.utils import Named, export, Expression, FixedNumpySeed, RandomZrotation, GaussianNoise
 from oil.datasetup.datasets import EasyIMGDataset
-from hamiltonian import HamiltonianDynamics, KeplerH, SpringH
-from lieGroups import SO3
+from lie_conv.hamiltonian import HamiltonianDynamics, KeplerH, SpringH
+from lie_conv.lieGroups import SO3
 from torchdiffeq import odeint_adjoint as odeint
-# from corm_data.utils import initialize_datasets
+from corm_data.utils import initialize_datasets
 import torchvision
 
 
@@ -550,7 +550,7 @@ def QM9datasets(root_dir=default_qm9_dir):
     if os.path.exists(filename):
         return torch.load(filename)
     else:
-        datasets, num_species, charge_scale = corm_data.utils.initialize_datasets((-1,-1,-1),
+        datasets, num_species, charge_scale = initialize_datasets((-1,-1,-1),
          "data", 'qm9', subtract_thermo=True,force_download=True)
         qm9_to_eV = {'U0': 27.2114, 'U': 27.2114, 'G': 27.2114, 'H': 27.2114, 'zpve': 27211.4, 'gap': 27.2114, 'homo': 27.2114, 'lumo': 27.2114}
         for dataset in datasets.values():
